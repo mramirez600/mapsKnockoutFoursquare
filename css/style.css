@@ -1,151 +1,73 @@
-      html,
-      body {
-        font-family: Arial, sans-serif;
-        height: 100%;
-        margin: 0;
-        padding: 0;
-      }
-      .container {
-        //height: 100%;
-        position: absolute;
-        z-index: 1;
-        margin: 2%;
-        //box-shadow: 10px 10px 5px #888888;
-      }
-      input {
-        font-size: 12px;
-      }
-      h1 {
-        color: #525454;
-        font-size: 22px;
-        margin: 0 0 10px 0;
-        text-align: center;
-      }
-      #hide-listings,
-      #show-listings {
-        width: 48%;
-      }
-      hr {
-        background: #D0D7D9;
-        height: 1px;
-        margin: 20px 0 20px 0;
-        border: none;
-      }
-      #map {
-        bottom:0px;
-        height: 100%;
-        left: 0px;
-        position: absolute;
-        right: 0px;
-      }
-      .options-box {
-        background: #fff;
-        border: 2px solid #999;
-        border-radius: 5px;
-        height: 100%;
-        line-height: 35px;
-        padding: 10px 10px 30px 10px;
-        text-align: left;
-        width: 340px;
-      }
-      #pano {
-        width: 200px;
-        height: 200px;
-      }
-      #places-search,
-      #search-within-time-text {
-        width: 84%;
-      }
-      .text {
-        font-size: 12px;
-      }
-      #toggle-drawing {
-        width: 27%;
-        position: relative;
-        margin-left: 10px;
-      }
-      #zoom-to-area-text {
-        width: 70%;
-      }
-      #zoom-to-area {
-        width: 24%;
-      }
+html,
+body {
+  font-family: Arial, sans-serif;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+.container {
+  //height: 100%;
+  position: absolute;
+  z-index: 1;
+  margin: 2%;
+  //box-shadow: 10px 10px 5px #888888;
+}
+input {
+  font-size: 12px;
+}
+h1 {
+  color: #525454;
+  font-size: 22px;
+  margin: 0 0 10px 0;
+  text-align: center;
+}
+#hide-listings,
+#show-listings {
+  width: 48%;
+}
+hr {
+  background: #D0D7D9;
+  height: 1px;
+  margin: 20px 0 20px 0;
+  border: none;
+}
+#map {
+  bottom:0px;
+  height: 100%;
+  left: 0px;
+  position: absolute;
+  right: 0px;
+}
+.options-box {
+  background: #fff;
+  border: 2px solid #999;
+  border-radius: 5px;
+  height: 100%;
+  line-height: 35px;
+  padding: 10px 10px 30px 10px;
+  text-align: left;
+  width: 340px;
+}
+#pano {
+  width: 200px;
+  height: 200px;
+}
+#places-search,
+#search-within-time-text {
+  width: 84%;
+}
+.text {
+  font-size: 12px;
+}
+#toggle-drawing {
+  width: 27%;
+  position: relative;
+  margin-left: 10px;
+}
+#zoom-to-area-text {
+  width: 70%;
+}
+#zoom-to-area {
+  width: 24%;
+}
 
- /* // Constructor creates a new map - only center and zoom are required.
-  map = new google.maps.Map(document.getElementById('map'), {
-    center: {
-      lat: 43.6426916,
-      lng: -79.3986131
-    },
-    zoom: 13,
-    styles: styles,
-    mapTypeControl: false
-  });
-
-        // This autocomplete is for use in the search within time entry box.
-        var timeAutocomplete = new google.maps.places.Autocomplete(
-            document.getElementById('search-within-time-text'));
-        // This autocomplete is for use in the geocoder entry box.
-        var zoomAutocomplete = new google.maps.places.Autocomplete(
-            document.getElementById('zoom-to-area-text'));
-        // Bias the boundaries within the map for the zoom to area text.
-        zoomAutocomplete.bindTo('bounds', map);
-        // Create a searchbox in order to execute a places search
-        var searchBox = new google.maps.places.SearchBox(
-            document.getElementById('places-search'));
-        // Bias the searchbox to within the bounds of the map.
-        searchBox.setBounds(map.getBounds());
-
-        // These are the real estate listings that will be shown to the user.
-        // Normally we'd have these in a database instead.
-  var locations = [{
-      title: 'Chinatown',
-      location: {
-        lat: 43.6509,
-        lng: -79.3972
-      }
-    },
-    {
-      title: 'CN Tower',
-      location: {
-        lat: 43.6426,
-        lng: -79.3871
-      }
-    },
-    {
-      title: 'The Distillery Historic District',
-      location: {
-        lat: 43.6503,
-        lng: -79.3596
-      }
-    },
-    {
-      title: 'St. Lawrence Market',
-      location: {
-        lat: 43.6491,
-        lng: -79.3718
-      }
-    },
-    {
-      title: 'Casa Loma',
-      location: {
-        lat: 43.6780,
-        lng: -79.4094
-      }
-    },
-    {
-      title: 'Nathan Phillips Square',
-      location: {
-        lat: 43.6525,
-        lng: -79.3835
-      }
-    },
-    {
-      title: 'Hockey Hall of Fame',
-      location: {
-        lat: 43.6473,
-        lng: -79.3777
-      }
-    }
-
-  ];*/
