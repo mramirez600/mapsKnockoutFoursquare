@@ -18,20 +18,26 @@
       <h1>The Toronto Life</h1>
 
       <hr>
-      <form>
-        <input placeholder="Search" type="search" name="q" data-bind="value: query, valueUpdate: 'keyup'" autocomplete="off">
-      </form>
+      <input class="searchbox" placeholder="Search..." type="search" name="q" data-bind="value: query, valueUpdate: 'keyup'" autocomplete="off">
 
+      <hr>
       <ul data-bind="foreach:locations">
         <li data-bind="text: title, click: $parent.markerListBounce">
         </li>
+        <hr>
       </ul>
+
+
     </div>
+
+
+
   </div>
+
 
   <div id="map"></div>
 
-
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.4.2/knockout-min.js"></script>
   <script src="javascript/script.js"></script>
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBCeh3sH0gecJv5jC-RfzCgiPEZPF-3kwA&libraries=places,drawing,geometry&v=3&callback=initMap"

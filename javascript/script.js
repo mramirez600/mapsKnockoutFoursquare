@@ -3,13 +3,55 @@ var map;
 var markers = [];
 
 function initMap() {
+
+	var styles = [{
+			"featureType": "all",
+			"stylers": [{
+					"saturation": 0
+				},
+				{
+					"hue": "#e7ecf0"
+				}
+			]
+		},
+		{
+			"featureType": "road",
+			"stylers": [{
+				"saturation": -70
+			}]
+		},
+		{
+			"featureType": "transit",
+			"stylers": [{
+				"visibility": "off"
+			}]
+		},
+		{
+			"featureType": "poi",
+			"stylers": [{
+				"visibility": "off"
+			}]
+		},
+		{
+			"featureType": "water",
+			"stylers": [{
+					"visibility": "simplified"
+				},
+				{
+					"saturation": -60
+				}
+			]
+		}
+	];
 	// Constructor creates a new map - only center and zoom are required.
 	map = new google.maps.Map(document.getElementById('map'), {
 		center: {
 			lat: 43.6426916,
 			lng: -79.3986131
 		},
-		zoom: 13
+		zoom: 13,
+		styles: styles,
+		mapTypeControl: false
 	});
 	// These are the real estate listings that will be shown to the user.
 	// Normally we'd have these in a database instead.
@@ -21,13 +63,15 @@ function initMap() {
 		// Get the position from the location array.
 		var position = locations[i].location;
 		var title = locations[i].title;
+		var venueFoursquareID = locations[i].id;
 		// Create a marker per location, and put into markers array.
 		var marker = new google.maps.Marker({
 			map: map,
 			position: position,
 			title: title,
 			animation: google.maps.Animation.DROP,
-			id: i
+			id: i,
+			fourSQ: venueFoursquareID
 		});
 		// Push the marker to our array of markers.
 		markers.push(marker);
@@ -52,27 +96,51 @@ function initMap() {
 function populateInfoWindow(marker, infowindow) {
 	// Check to make sure the infowindow is not already opened on this marker.
 	if (infowindow.marker != marker) {
-		infowindow.marker = marker;
-		infowindow.setContent('<div>' + marker.title + '</div>');
-		infowindow.open(map, marker);
-		// Make sure the marker property is cleared if the infowindow is closed.
-		infowindow.addListener('closeclick', function () {
-			infowindow.setMarker = null;
+		var apiURL = 'https://api.foursquare.com/v2/venues/';
+		var foursquareClientID = '5JI5OMRGWLPI2EY5T4K44KUE4BC5AKKY4CCBEHQ1MECTT4YU';
+		var foursquareSecret = 'I0HJT34P2IUV554D1LBEQBOP2NCHETN0DXGUOTQ5EGNMAWJT';
+		var foursquareVersion = '20170112';
+
+		var foursquareURL = apiURL + marker.fourSQ + '?client_id=' + foursquareClientID + '&client_secret=' + foursquareSecret + '&v=' + foursquareVersion;
+
+
+		$.ajax({
+			url: foursquareURL,
+			success: function (data) {
+				var desc = data.response.venue.location.formattedAddress;
+				var descURL = data.response.venue.url;
+				var fsqURL = data.response.venue.canonicalUrl;
+				infowindow.marker = marker;
+				infowindow.setContent('<h3>' + marker.title + '</h3>' + desc + '<br> <br> <a href="' + descURL + '" target="_blank">MAIN SITE</a> | <a href="' + fsqURL + '" target="_blank">FOURSQUARE</a>');
+				infowindow.open(map, marker);
+				// Make sure the marker property is cleared if the infowindow is closed.
+				infowindow.addListener('closeclick', function () {
+					infowindow.setMarker = null;
+				});
+			},
+
+			error: function (data) {
+				// Error handler when request to Foursquare fails
+				alert("Details not currently available.");
+			}
 		});
+
 	}
 }
 
 
-
 var locations = [{
-		title: 'Chinatown',
+		title: 'Art Gallery of Ontario',
+		id: '4ad4c05ef964a520daf620e3',
 		location: {
-			lat: 43.6509,
-			lng: -79.3972
-		}
+			lat: 43.6536,
+			lng: -79.3925
+		},
+
 	},
 	{
 		title: 'CN Tower',
+		id: '4ad4c05ef964a52096f620e3',
 		location: {
 			lat: 43.6426,
 			lng: -79.3871
@@ -80,6 +148,7 @@ var locations = [{
 	},
 	{
 		title: 'The Distillery Historic District',
+		id: '4ad4c05ef964a520bff620e3',
 		location: {
 			lat: 43.6503,
 			lng: -79.3596
@@ -87,6 +156,7 @@ var locations = [{
 	},
 	{
 		title: 'St. Lawrence Market',
+		id: '4ad4c062f964a520fbf720e3',
 		location: {
 			lat: 43.6491,
 			lng: -79.3718
@@ -94,6 +164,7 @@ var locations = [{
 	},
 	{
 		title: 'Casa Loma',
+		id: '4bef48fcc80dc9284ec827e3',
 		location: {
 			lat: 43.6780,
 			lng: -79.4094
@@ -101,6 +172,7 @@ var locations = [{
 	},
 	{
 		title: 'Nathan Phillips Square',
+		id: '4ad4c05ef964a520a6f620e3',
 		location: {
 			lat: 43.6525,
 			lng: -79.3835
@@ -108,6 +180,7 @@ var locations = [{
 	},
 	{
 		title: 'Hockey Hall of Fame',
+		id: '4ad4c05ef964a520d8f620e3',
 		location: {
 			lat: 43.6473,
 			lng: -79.3777
@@ -115,7 +188,6 @@ var locations = [{
 	}
 
 ];
-
 
 
 function toggleBounce() {
