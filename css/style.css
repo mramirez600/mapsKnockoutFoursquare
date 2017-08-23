@@ -4,37 +4,45 @@ body {
   height: 100%;
   margin: 0;
   padding: 0;
+  transition: background-color .5s;
 }
+
 .container {
-  height: 100%;
-  position: relative;
+  //height: 100%;
+  position: absolute;
+  z-index: 10; //margin-left: -362px;
 }
+
 input {
   font-size: 12px;
 }
+
 h1 {
   color: #525454;
   font-size: 22px;
   margin: 0 0 10px 0;
   text-align: center;
 }
+
 #hide-listings,
 #show-listings {
   width: 48%;
 }
+
 hr {
   background: #D0D7D9;
   height: 1px;
   margin: 20px 0 20px 0;
   border: none;
 }
+
 #map {
-  bottom:0px;
-  height: 100%;
-  left: 362px;
-  position: absolute;
-  right: 0px;
+  bottom: 0px;
+  height: 100%; //left: 362px;
+  position: relative;
+  right: 0px; //z-index: 2;
 }
+
 .options-box {
   background: #fff;
   border: 1px solid #999;
@@ -45,25 +53,31 @@ hr {
   text-align: left;
   width: 340px;
 }
+
 #pano {
   width: 200px;
   height: 200px;
 }
+
 #places-search,
 #search-within-time-text {
   width: 84%;
 }
+
 .text {
   font-size: 12px;
 }
+
 #toggle-drawing {
   width: 27%;
   position: relative;
   margin-left: 10px;
 }
+
 #zoom-to-area-text {
   width: 70%;
 }
+
 #zoom-to-area {
   width: 24%;
 }
@@ -84,5 +98,80 @@ ul {
   margin: 0 auto;
   background: #e4e4e4;
   font-size: 1.4em;
+}
 
+.sidenav {
+  //height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 5;
+  top: 0;
+  left: 0;
+  background-color: #111;
+  overflow-x: hidden;
+  transition: 0.5s; //padding-top: 60px;
+}
+
+.sidenav a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #818181;
+  display: block;
+  transition: 0.3s;
+}
+
+.sidenav a:hover,
+.offcanvas a:focus {
+  color: #f1f1f1;
+}
+
+.sidenav .closebtn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 50px;
+}
+
+#main {
+  transition: margin-left .5s; //padding: 16px;
+}
+
+.hamenu {
+  font-size: 30px;
+  color: crimson;
+  cursor: pointer;
+  position: absolute;
+  z-index: 3;
+  padding-left: 15px;
+  background: #fff;
+  width: 100%;
+  box-shadow: 0 4px 2px -2px gray;
+}
+
+.errorerror {
+  padding-top: 400px;
+  background: crimson;
+  height: 100%;
+  margin: 0 auto; //width: 500px;
+  text-align: center;
+  color: #fff;
+  font-weight: bold;
+  font-size: 2em;
+}
+
+li {
+  border-bottom: 1px black solid;
+  padding: 10px 0 10px 0;
+
+}
+
+@media screen and (max-height: 450px) {
+  .sidenav {
+    padding-top: 15px;
+  }
+  .sidenav a {
+    font-size: 18px;
+  }
 }

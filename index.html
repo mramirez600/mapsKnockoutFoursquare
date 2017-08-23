@@ -4,17 +4,17 @@
 <head>
   <link rel="stylesheet" type="text/css" href="css/style.css">
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>The Toronto Life</title>
 
 
 </head>
 
 <body>
-
-  <div class="container">
-
+<!--List for locations. Filter and animation for markers enabled -->
+  <div class="container sidenav" id="mySidenav">
     <div class="options-box">
+      <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
       <h1>The Toronto Life</h1>
 
       <hr>
@@ -22,26 +22,22 @@
 
       <hr>
       <ul data-bind="foreach:locations">
-        <li data-bind="text: title, click: $parent.markerListBounce">
+        <li class="listitem" data-bind="text: title, click: $parent.markerListBounce">
         </li>
-        <hr>
+        
       </ul>
-
-
     </div>
-
-
-
   </div>
-
-
-  <div id="map"></div>
+<!--Hamburger menu to slide in location list-->
+  <span class="hamenu" onclick="openNav()">&#9776; THE TORONTO LIFE</span>
+<!--map -->
+  <div id="map" class="main"></div>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.4.2/knockout-min.js"></script>
   <script src="javascript/script.js"></script>
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBCeh3sH0gecJv5jC-RfzCgiPEZPF-3kwA&libraries=places,drawing,geometry&v=3&callback=initMap"
-    async defer></script>
+    onerror="googleMapsApiErrorHandler()" async defer></script>
 
 
 
